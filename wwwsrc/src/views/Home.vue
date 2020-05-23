@@ -1,6 +1,13 @@
 <template>
-  <div class="home">
-    <h1>Welcome Home</h1>
+  <div class="home container-fluid">
+    <div class="row">
+      <div class="col-3 m-3" v-for="keep in keeps" :key="keep.id" :keepData="keep">
+        <img :src="keep.img" />
+        <p>{{keep.name}}</p>
+        <p>{{keep.description}}</p>
+        <p>Private: {{keep.isPrivate}}</p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -10,6 +17,9 @@ export default {
   computed: {
     user() {
       return this.$store.state.user;
+    },
+    keeps() {
+      return this.$store.state.keeps.publicKeeps;
     }
   },
   methods: {

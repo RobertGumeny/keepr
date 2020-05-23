@@ -2,7 +2,6 @@ import { api } from "../AxiosService"
 
 export const keeps = {
   state: {
-    keepMessage: "Hi I am coming from the Keep Module",
     publicKeeps: [],
     userKeeps: []
   },

@@ -1,7 +1,9 @@
 import Vue from "vue";
+// @ts-ignore
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
+import VueSweetalert2 from "vue-sweetalert2";
 import { Auth0Plugin, onAuth } from "@bcwdev/auth0-vue";
 import { domain, clientId, audience } from "./authConfig";
 
@@ -18,10 +20,12 @@ Vue.use(Auth0Plugin, {
   }
 });
 
+Vue.use(VueSweetalert2);
+
 new Vue({
   router,
   store,
-  render: function(h) {
+  render: function (h) {
     return h(App);
   }
 }).$mount("#app");
