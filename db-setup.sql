@@ -23,6 +23,7 @@
 --     PRIMARY KEY (id)
 -- );
 
+
 -- CREATE TABLE vaultkeeps (
 --     id int NOT NULL AUTO_INCREMENT,
 --     vaultId int NOT NULL,
@@ -50,6 +51,8 @@
 -- FROM vaultkeeps vk
 -- INNER JOIN keeps k ON k.id = vk.keepId 
 -- WHERE (vaultId = @vaultId AND vk.userId = @userId) 
+
+
 
 
 
