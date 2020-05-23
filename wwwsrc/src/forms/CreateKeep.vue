@@ -65,7 +65,7 @@ export default {
     },
     createNewKeep() {
       this.newKeep.isPrivate = this.isPrivate;
-      this.$store.dispatch("createKeep", this.newKeep);
+      this.$store.dispatch("createKeep", { newKeep: this.newKeep, user: this.$auth.user });
     }
   },
   components: {}

@@ -3,11 +3,18 @@ import { api } from "../AxiosService"
 export const keeps = {
   state: {
     publicKeeps: [],
-    userKeeps: []
+    userKeeps: [],
+    activeKeep: {}
   },
   mutations: {
-    setKeeps(state, keeps) {
-      state.publicKeeps = keeps;
+    setKeeps(state, pKeeps) {
+      state.publicKeeps = pKeeps;
+    },
+    setUserKeeps(state, uKeeps) {
+      state.userKeeps = uKeeps;
+    },
+    setActiveKeep(state, aKeep) {
+      state.activeKeep = aKeep;
     }
   },
   actions: {
@@ -19,9 +26,14 @@ export const keeps = {
         console.error(error)
       }
     },
-    async createKeep({ commit, dispatch }, newKeep) {
-      await api.post("keeps", newKeep);
+    async getUserKeeps({ commit, dispatch }, userData) {
+      let res = await api.get(`keeps/user`, userData);
+      commit("setUserKeeps", res.data)
+    },
+    async createKeep({ commit, dispatch }, payload) {
+      await api.post("keeps", payload.newKeep);
       dispatch("getKeeps");
+      dispatch("getUserKeeps", payload.user);
     }
   }
 }

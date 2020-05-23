@@ -1,19 +1,18 @@
 <template>
   <div class="home container-fluid">
     <div class="row">
-      <div class="col-3 m-3" v-for="keep in keeps" :key="keep.id" :keepData="keep">
-        <img :src="keep.img" />
-        <p>{{keep.name}}</p>
-        <p>{{keep.description}}</p>
-        <p>Private: {{keep.isPrivate}}</p>
-      </div>
+      <Keep v-for="keep in keeps" :key="keep.id" :keepData="keep"></Keep>
     </div>
   </div>
 </template>
 
 <script>
+import Keep from "../components/Keep"
 export default {
   name: "home",
+  mounted() {
+    this.$store.dispatch("getKeeps");
+  },
   computed: {
     user() {
       return this.$store.state.user;
@@ -26,6 +25,7 @@ export default {
     logout() {
       this.$store.dispatch("logout");
     }
-  }
+  },
+  components: { Keep }
 };
 </script>

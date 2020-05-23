@@ -5,13 +5,10 @@
     <DefaultModal title="Create a Keep" id="createKeepModal">
       <CreateKeep />
     </DefaultModal>
+    <p>User</p>
+    <h2>{{user.sub}}</h2>
     <div class="row">
-      <div class="col-3 m-3" v-for="keep in keeps" :key="keep.id" :keepData="keep">
-        <img :src="keep.img" />
-        <p>{{keep.name}}</p>
-        <p>{{keep.description}}</p>
-        <p>Private: {{keep.isPrivate}}</p>
-      </div>
+      <Keep v-for="keep in userKeeps" :key="keep.id" :keepData="keep"></Keep>
     </div>
   </div>
 </template>
@@ -19,21 +16,23 @@
 <script>
 import DefaultModal from "../components/DefaultModal"
 import CreateKeep from "../forms/CreateKeep"
+import Keep from "../components/Keep"
 export default {
   mounted() {
-    this.$store.dispatch("getKeeps");
+    this.$store.dispatch("getUserKeeps", this.$auth.user);
   },
   computed: {
     user() {
       return this.$auth.user;
     },
-    keeps() {
-      return this.$store.state.keeps.publicKeeps;
+    userKeeps() {
+      return this.$store.state.keeps.userKeeps;
     }
   },
   components: {
     DefaultModal,
-    CreateKeep
+    CreateKeep,
+    Keep
   }
 };
 </script>

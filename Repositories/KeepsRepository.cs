@@ -15,12 +15,22 @@ namespace Keepr.Repositories
       _db = db;
     }
 
+    //SECTION Get requests
+
     internal IEnumerable<Keep> Get()
     {
-      string sql = "SELECT * FROM Keeps WHERE isPrivate = 0;";
+      string sql = "SELECT * FROM keeps WHERE isPrivate = 0;";
       return _db.Query<Keep>(sql);
     }
 
+    internal IEnumerable<Keep> GetUserKeeps(string userId)
+    {
+      string sql = "SELECT * FROM keeps WHERE userId = @UserId;";
+      return _db.Query<Keep>(sql, new { userId });
+    }
+
+    //!SECTION 
+    //SECTION Post requests
     internal Keep Create(Keep newKeep)
     {
       string sql = @"
@@ -32,5 +42,6 @@ namespace Keepr.Repositories
       newKeep.Id = _db.ExecuteScalar<int>(sql, newKeep);
       return newKeep;
     }
+    //!SECTION
   }
 }
