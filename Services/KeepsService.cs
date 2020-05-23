@@ -13,6 +13,7 @@ namespace Keepr.Services
     {
       _repo = repo;
     }
+    //SECTION Get requests
     public IEnumerable<Keep> Get()
     {
       return _repo.Get();
@@ -22,10 +23,16 @@ namespace Keepr.Services
     {
       return _repo.GetUserKeeps(userId);
     }
-
+    //!SECTION
+    //SECTION Put requests
+    //!SECTION
+    //SECTION Post requests
     public Keep Create(Keep newKeep)
     {
       return _repo.Create(newKeep);
     }
+    //!SECTION
+    //SECTION Delete requests
+    //!SECTION 
   }
 }

@@ -29,7 +29,9 @@ namespace Keepr.Repositories
       return _db.Query<Keep>(sql, new { userId });
     }
 
-    //!SECTION 
+    //!SECTION
+    //SECTION Put requests
+    //!SECTION
     //SECTION Post requests
     internal Keep Create(Keep newKeep)
     {
@@ -42,6 +44,8 @@ namespace Keepr.Repositories
       newKeep.Id = _db.ExecuteScalar<int>(sql, newKeep);
       return newKeep;
     }
+    //!SECTION
+    //SECTION Delete requests
     //!SECTION
   }
 }

@@ -24,7 +24,6 @@
 --     PRIMARY KEY (id)
 -- );
 
-
 -- CREATE TABLE vaultkeeps (
 --     id int NOT NULL AUTO_INCREMENT,
 --     vaultId int NOT NULL,
@@ -45,7 +44,7 @@
 -- )
 
 
--- -- USE THIS LINE FOR GET KEEPS BY VAULTID
+--  USE THIS LINE FOR GET KEEPS BY VAULTID
 -- SELECT 
 -- k.*,
 -- vk.id as vaultKeepId
@@ -54,10 +53,14 @@
 -- WHERE (vaultId = @vaultId AND vk.userId = @userId) 
 
 
+-- USE THESE TO PULL ALL DATA FROM TABLES
+-- SELECT * FROM keeps;
+SELECT * FROM vaults;
 
 
 
--- -- USE THIS TO CLEAN OUT YOUR DATABASE
+
+-- USE THIS TO CLEAN OUT YOUR DATABASE
 -- DROP TABLE IF EXISTS vaultkeeps;
 -- DROP TABLE IF EXISTS vaults;
 -- DROP TABLE IF EXISTS keeps;

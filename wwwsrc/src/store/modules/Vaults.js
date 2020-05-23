@@ -2,7 +2,8 @@ import { api } from "../AxiosService"
 
 export const vaults = {
   state: {
-    userVaults: []
+    userVaults: [],
+    activeVault: {}
   },
   mutations: {},
   actions: {}
