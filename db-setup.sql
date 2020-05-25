@@ -56,6 +56,7 @@
 -- USE THESE TO PULL ALL DATA FROM TABLES
 -- SELECT * FROM keeps;
 SELECT * FROM vaults;
+-- SELECT * FROM vaultkeeps;
 
 
 

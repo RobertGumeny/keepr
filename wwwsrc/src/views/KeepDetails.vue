@@ -1,7 +1,9 @@
 <template>
   <div class="keepDetails container-fluid">
-    <div class="row">
-      <img :src="keep.img" alt />
+    <div class="row flex-column align-items-center">
+      <div>
+        <img class="img-fluid" :src="keep.img" alt />
+      </div>
       <p>{{keep.name}}</p>
       <p>{{keep.description}}</p>
     </div>

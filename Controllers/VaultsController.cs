@@ -23,7 +23,7 @@ namespace Keepr.Controllers
     }
     //SECTION Get requests
     [Authorize]
-    [HttpGet]
+    [HttpGet("user")]
     public ActionResult<IEnumerable<Vault>> GetUserVaults()
     {
       try
