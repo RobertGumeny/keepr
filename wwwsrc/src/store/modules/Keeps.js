@@ -34,7 +34,7 @@ export const keeps = {
         commit("setUserKeeps", res.data)
 
       } catch (error) {
-        alert(JSON.stringify(error.response))
+        console.error(error)
       }
     },
     //NOTE Create a new keep
@@ -56,6 +56,8 @@ export const keeps = {
       } catch (error) {
         alert(JSON.stringify(error.response.data));
       }
-    }
+    },
+    //NOTE Add keep to vault
+
   }
 }
