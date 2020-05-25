@@ -3,6 +3,7 @@
     <p>{{vaultData.name}}</p>
     <p>{{vaultData.description}}</p>
     <button @click="viewDetails()" data-toggle="modal" data-target="#viewVaultModal">View Details</button>
+    <button @click="deletePrompt()">Delete</button>
     <DefaultModal title="Vault Details" id="viewVaultModal">
       <VaultDetails />
     </DefaultModal>
@@ -23,6 +24,16 @@ export default {
   methods: {
     viewDetails() {
       this.$store.commit("setActiveVault", this.vaultData)
+      this.$store.dispatch("GetKeepsByVaultId", this.vaultData.id)
+    },
+    deletePrompt() {
+      let d = confirm("Are you sure you want to delete?\nThis Vault cannot be recovered");
+      if (d == true) {
+        this.deleteVault();
+      }
+    },
+    deleteVault() {
+      this.$store.dispatch("deleteVault", { vaultId: this.vaultData.id, user: this.$auth.user })
     }
   },
   components: {

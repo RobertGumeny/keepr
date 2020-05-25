@@ -18,6 +18,7 @@ export const keeps = {
     }
   },
   actions: {
+    //NOTE Get all keeps
     async getKeeps({ commit, dispatch }) {
       try {
         let res = await api.get("keeps");
@@ -26,14 +27,35 @@ export const keeps = {
         console.error(error)
       }
     },
+    //NOTE Get keeps by user Id
     async getUserKeeps({ commit, dispatch }, userData) {
-      let res = await api.get(`keeps/user`, userData);
-      commit("setUserKeeps", res.data)
+      try {
+        let res = await api.get(`keeps/user`, userData);
+        commit("setUserKeeps", res.data)
+
+      } catch (error) {
+        alert(JSON.stringify(error.response))
+      }
     },
+    //NOTE Create a new keep
     async createKeep({ commit, dispatch }, payload) {
-      await api.post("keeps", payload.newKeep);
-      dispatch("getKeeps");
-      dispatch("getUserKeeps", payload.user);
+      try {
+        await api.post("keeps", payload.newKeep);
+        dispatch("getKeeps");
+        dispatch("getUserKeeps", payload.user);
+
+      } catch (error) {
+        alert(JSON.stringify(error.response))
+      }
+    },
+    //NOTE Delete a keep (back-end will only allow it to be deleted if it is private)
+    async deleteKeep({ dispatch }, payload) {
+      try {
+        await api.delete("keeps/" + payload.keepId);
+        dispatch("getUserKeeps", payload.user);
+      } catch (error) {
+        alert(JSON.stringify(error.response.data));
+      }
     }
   }
 }

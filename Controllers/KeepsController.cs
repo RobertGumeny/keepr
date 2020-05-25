@@ -75,6 +75,25 @@ namespace Keepr.Controllers
 
     //!SECTION
     //SECTION Delete requests
+    [Authorize]
+    [HttpDelete("{id}")]
+    public ActionResult<string> Delete(int id)
+    {
+      try
+      {
+        Claim user = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier);
+        if (user == null)
+        {
+          throw new Exception("You must be logged in to delete!");
+        }
+        string userId = user.Value;
+        return Ok(_ks.Delete(id, userId));
+      }
+      catch (System.Exception err)
+      {
+        return BadRequest(err.Message);
+      }
+    }
     //!SECTION
 
   }

@@ -5,6 +5,7 @@
     <p>{{keepData.description}}</p>
     <p>Private: {{keepData.isPrivate}}</p>
     <button @click="viewDetails()" data-toggle="modal" data-target="#viewKeepModal">View Details</button>
+    <slot></slot>
     <DefaultModal title="Keep Details" id="viewKeepModal">
       <KeepDetails />
     </DefaultModal>

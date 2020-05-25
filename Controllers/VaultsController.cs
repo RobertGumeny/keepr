@@ -16,12 +16,15 @@ namespace Keepr.Controllers
   public class VaultsController : ControllerBase
   {
     private readonly VaultsService _vs;
+    private readonly KeepsService _ks;
 
-    public VaultsController(VaultsService vs)
+    public VaultsController(VaultsService vs, KeepsService ks)
     {
       _vs = vs;
+      _ks = ks;
     }
     //SECTION Get requests
+    //NOTE Get all vaults belonging to current user
     [Authorize]
     [HttpGet("user")]
     public ActionResult<IEnumerable<Vault>> GetUserVaults()
@@ -40,6 +43,46 @@ namespace Keepr.Controllers
       {
         return BadRequest(e.Message);
       };
+    }
+    //NOTE Get vault by vault ID
+    [Authorize]
+    [HttpGet("{id}")]
+    public ActionResult<Vault> GetById(int id)
+    {
+      try
+      {
+        return Ok(_vs.GetById(id));
+      }
+      catch (System.Exception)
+      {
+
+        throw;
+      }
+    }
+    //NOTE Get all keeps belonging to a specific vault
+    [Authorize]
+    [HttpGet("{id}/keeps")]
+    public ActionResult<IEnumerable<VaultKeepViewModel>> GetKeepsByVaultId(int id)
+    {
+      try
+      {
+        Vault vault = _vs.GetById(id);
+        if (vault == null)
+        {
+          throw new Exception("Vault does not exist!");
+        }
+        Claim user = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier);
+        if (user == null)
+        {
+          throw new Exception("You must be logged in to view your Vaults!");
+        }
+        string userId = user.Value;
+        return Ok(_ks.GetKeepsByVaultId(id, userId));
+      }
+      catch (System.Exception err)
+      {
+        return BadRequest(err.Message);
+      }
     }
     //!SECTION
     //SECTION Put requests
@@ -62,6 +105,25 @@ namespace Keepr.Controllers
     }
     //!SECTION
     //SECTION Delete requests
+    [Authorize]
+    [HttpDelete("{id}")]
+    public ActionResult<string> Delete(int id)
+    {
+      try
+      {
+        Claim user = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier);
+        if (user == null)
+        {
+          throw new Exception("You must be logged in to delete!");
+        }
+        string userId = user.Value;
+        return Ok(_vs.Delete(id, userId));
+      }
+      catch (System.Exception err)
+      {
+        return BadRequest(err.Message);
+      }
+    }
     //!SECTION
   }
 }

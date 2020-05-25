@@ -15,10 +15,17 @@ namespace Keepr.Repositories
       _db = db;
     }
     //SECTION Get requests
+    //NOTE Get Vaults by userId
     internal IEnumerable<Vault> GetUserVaults(string userId)
     {
       string sql = "SELECT * FROM vaults WHERE userId = @UserId;";
       return _db.Query<Vault>(sql, new { userId });
+    }
+    //NOTE Get vault by id
+    internal Vault GetById(int id)
+    {
+      string sql = "SELECT * FROM vaults WHERE id = @Id";
+      return _db.QueryFirstOrDefault<Vault>(sql, new { id });
     }
     //!SECTION
     //SECTION Put requests
@@ -37,6 +44,12 @@ namespace Keepr.Repositories
     }
     //!SECTION
     //SECTION Delete requests
+    internal bool Delete(int id, string userId)
+    {
+      string sql = "DELETE FROM vaults WHERE id = @Id AND userId = @UserID LIMIT 1";
+      int affectedRows = _db.Execute(sql, new { id, userId });
+      return affectedRows == 1;
+    }
     //!SECTION
   }
 }

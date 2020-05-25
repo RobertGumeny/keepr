@@ -21,6 +21,11 @@ namespace Keepr.Controllers
     {
       _vks = vks;
     }
+    //SECTION Get requests
+    //!SECTION
+    //SECTION Put requests
+    //!SECTION
+    //SECTION Post requests
     [Authorize]
     [HttpPost]
     public ActionResult<VaultKeep> Create([FromBody] VaultKeep newVaultKeep)
@@ -36,5 +41,8 @@ namespace Keepr.Controllers
         return BadRequest(error.Message);
       }
     }
+    //!SECTION
+    //SECTION Delete requests
+    //!SECTION
   }
 }

@@ -14,14 +14,30 @@ namespace Keepr.Services
       _repo = repo;
     }
     //SECTION Get requests
+    //NOTE Get all Keeps
     public IEnumerable<Keep> Get()
     {
       return _repo.Get();
     }
-
+    //NOTE Get keep by id
+    public Keep GetById(int id)
+    {
+      Keep foundKeep = _repo.GetById(id);
+      if (foundKeep == null)
+      {
+        throw new Exception("Invalid Keep ID");
+      }
+      return foundKeep;
+    }
+    //NOTE Get keeps by userId
     public IEnumerable<Keep> GetUserKeeps(string userId)
     {
       return _repo.GetUserKeeps(userId);
+    }
+    //NOTE Get keeps by vaultId
+    internal IEnumerable<VaultKeepViewModel> GetKeepsByVaultId(int id, string userId)
+    {
+      return _repo.GetKeepsByVaultId(id, userId);
     }
     //!SECTION
     //SECTION Put requests
@@ -33,6 +49,23 @@ namespace Keepr.Services
     }
     //!SECTION
     //SECTION Delete requests
+    internal string Delete(int id, string userId)
+    {
+      Keep foundKeep = GetById(id);
+      if (foundKeep.IsPrivate == false)
+      {
+        throw new Exception("You cannot delete a public Keep!");
+      }
+      if (foundKeep.UserId != userId)
+      {
+        throw new Exception("This isn't your keep!");
+      }
+      if (_repo.Delete(id, userId))
+      {
+        return "Keep deleted";
+      }
+      throw new Exception("Catastrophic Error!");
+    }
     //!SECTION 
   }
 }

@@ -6,6 +6,7 @@
       </div>
       <p>{{keep.name}}</p>
       <p>{{keep.description}}</p>
+      <button @click="deletePrompt()" data-dismiss="modal">Delete Keep</button>
     </div>
   </div>
 </template>
@@ -22,7 +23,17 @@ export default {
       return this.$store.state.keeps.activeKeep;
     }
   },
-  methods: {},
+  methods: {
+    deletePrompt() {
+      let d = confirm("Are you sure you want to delete?\nThis Keep cannot be recovered");
+      if (d == true) {
+        this.deleteKeep();
+      }
+    },
+    deleteKeep() {
+      this.$store.dispatch("deleteKeep", { keepId: this.keep.id, user: this.$auth.user })
+    }
+  },
   components: {}
 }
 </script>

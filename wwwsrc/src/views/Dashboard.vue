@@ -16,15 +16,15 @@
     </div>
     <div class="row">
       <div class="col-12">
-        <h2>Keeps:</h2>
-      </div>
-      <Keep v-for="keep in userKeeps" :key="keep.id" :keepData="keep"></Keep>
-    </div>
-    <div class="row">
-      <div class="col-12">
         <h2>Vaults:</h2>
       </div>
       <Vault v-for="vault in userVaults" :key="vault.id" :vaultData="vault"></Vault>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <h2>Keeps:</h2>
+      </div>
+      <Keep v-for="keep in userKeeps" :key="keep.id" :keepData="keep"></Keep>
     </div>
   </div>
 </template>
@@ -39,6 +39,9 @@ export default {
   mounted() {
     this.$store.dispatch("getUserKeeps", this.$auth.user);
     this.$store.dispatch("getUserVaults", this.$auth.user)
+  },
+  methods: {
+
   },
   computed: {
     user() {
