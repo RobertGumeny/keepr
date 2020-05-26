@@ -29,7 +29,7 @@ export const vaults = {
       }
     },
     //NOTE Get keeps by vaultId
-    async GetKeepsByVaultId({ commit, dispatch }, vaultId) {
+    async getKeepsByVaultId({ commit, dispatch }, vaultId) {
       try {
         let res = await api.get(`vaults/${vaultId}/keeps`);
         commit("setActiveVaultKeeps", res.data);

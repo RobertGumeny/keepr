@@ -18,6 +18,13 @@ namespace Keepr.Services
     {
       return _repo.Create(newVaultKeep);
     }
-
+    internal string Delete(int id)
+    {
+      if (_repo.Delete(id))
+      {
+        return ("Successfully deleted!");
+      }
+      throw new Exception("Delete request unsuccessful");
+    }
   }
 }

@@ -57,7 +57,6 @@ export const keeps = {
         alert(JSON.stringify(error.response.data));
       }
     },
-    //NOTE Add keep to vault
 
   }
 }

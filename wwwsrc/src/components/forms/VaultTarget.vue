@@ -1,7 +1,5 @@
 <template>
-  <div class="vaultTarget">
-    <button class="dropdown-item" type="button" @click="createVaultKeep()">{{vaultData.name}}</button>
-  </div>
+  <option :value="vaultData.id">{{vaultData.name}}</option>
 </template>
 
 

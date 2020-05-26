@@ -3,7 +3,7 @@
     <div class="row flex-column align-items-center">
       <p>{{vault.name}}</p>
       <p>{{vault.description}}</p>
-      <Keep v-for="keep in vaultKeeps" :key="keep.id" :keepData="keep"></Keep>
+      <VaultKeep v-for="vaultKeep in vaultKeeps" :key="vaultKeep.id" :vaultKeepData="vaultKeep"></VaultKeep>
       <button @click="deletePrompt()" data-dismiss="modal">Delete Vault</button>
     </div>
   </div>
@@ -11,7 +11,7 @@
 
 
 <script>
-import Keep from "../components/Keep"
+import VaultKeep from "../components/VaultKeep"
 export default {
   name: 'vaultDetails',
   data() {
@@ -37,7 +37,7 @@ export default {
     }
   },
   components: {
-    Keep
+    VaultKeep
   }
 }
 </script>

@@ -43,6 +43,19 @@ namespace Keepr.Controllers
     }
     //!SECTION
     //SECTION Delete requests
+    [Authorize]
+    [HttpDelete("{id}")]
+    public ActionResult<string> Delete(int id)
+    {
+      try
+      {
+        return Ok(_vks.Delete(id));
+      }
+      catch (System.Exception error)
+      {
+        return BadRequest(error.Message);
+      }
+    }
     //!SECTION
   }
 }

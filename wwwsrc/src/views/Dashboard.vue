@@ -6,12 +6,12 @@
         <button type="button" data-toggle="modal" data-target="#createKeepModal">Add a Keep</button>
         <button type="button" data-toggle="modal" data-target="#createVaultModal">Create a Vault</button>
       </div>
-      <DefaultModal title="Create a Keep" id="createKeepModal">
+      <LargeModal title="Create a Keep" id="createKeepModal">
         <CreateKeep />
-      </DefaultModal>
-      <DefaultModal title="Create a Vault" id="createVaultModal">
+      </LargeModal>
+      <LargeModal title="Create a Vault" id="createVaultModal">
         <CreateVault />
-      </DefaultModal>
+      </LargeModal>
       <h2>User ID: {{user.sub}}</h2>
     </div>
     <div class="row">
@@ -24,13 +24,16 @@
       <div class="col-12">
         <h2>Keeps:</h2>
       </div>
+    </div>
+    <div class="row">
       <Keep v-for="keep in userKeeps" :key="keep.id" :keepData="keep"></Keep>
     </div>
   </div>
 </template>
 
 <script>
-import DefaultModal from "../components/DefaultModal"
+import LargeModal from "../components/LargeModal"
+import SmallModal from "../components/SmallModal"
 import CreateKeep from "../components/forms/CreateKeep"
 import CreateVault from "../components/forms/CreateVault"
 import Keep from "../components/Keep"
@@ -55,7 +58,8 @@ export default {
     }
   },
   components: {
-    DefaultModal,
+    LargeModal,
+    SmallModal,
     CreateKeep,
     CreateVault,
     Keep,

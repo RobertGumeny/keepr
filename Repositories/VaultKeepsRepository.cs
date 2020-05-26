@@ -26,5 +26,11 @@ namespace Keepr.Repositories
       newVaultKeep.Id = _db.ExecuteScalar<int>(sql, newVaultKeep);
       return newVaultKeep;
     }
+    internal bool Delete(int id)
+    {
+      string sql = "DELETE FROM vaultkeeps WHERE id = @id LIMIT 1";
+      int affectedRows = _db.Execute(sql, new { id });
+      return affectedRows == 1;
+    }
   }
 }

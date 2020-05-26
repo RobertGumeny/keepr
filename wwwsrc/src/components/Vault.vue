@@ -4,15 +4,16 @@
     <p>{{vaultData.description}}</p>
     <button @click="viewDetails()" data-toggle="modal" data-target="#viewVaultModal">View Details</button>
     <button @click="deletePrompt()">Delete</button>
-    <DefaultModal title="Vault Details" id="viewVaultModal">
+    <LargeModal title="Vault Details" id="viewVaultModal">
       <VaultDetails />
-    </DefaultModal>
+    </LargeModal>
   </div>
 </template>
 
 
 <script>
-import DefaultModal from "../components/DefaultModal"
+import LargeModal from "../components/LargeModal"
+import SmallModal from "./SmallModal"
 import VaultDetails from "../views/VaultDetails"
 export default {
   name: 'vault',
@@ -24,7 +25,7 @@ export default {
   methods: {
     viewDetails() {
       this.$store.commit("setActiveVault", this.vaultData)
-      this.$store.dispatch("GetKeepsByVaultId", this.vaultData.id)
+      this.$store.dispatch("getKeepsByVaultId", this.vaultData.id)
     },
     deletePrompt() {
       let d = confirm("Are you sure you want to delete?\nThis Vault cannot be recovered");
@@ -37,7 +38,8 @@ export default {
     }
   },
   components: {
-    DefaultModal,
+    LargeModal,
+    SmallModal,
     VaultDetails
   }
 }
