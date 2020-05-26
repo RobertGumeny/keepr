@@ -4,7 +4,7 @@
     <p>{{vaultData.description}}</p>
     <button @click="viewDetails()" data-toggle="modal" data-target="#viewVaultModal">View Details</button>
     <button @click="deletePrompt()">Delete</button>
-    <LargeModal title="Vault Details" id="viewVaultModal">
+    <LargeModal :title="vaultData.name" id="viewVaultModal">
       <VaultDetails />
     </LargeModal>
   </div>

@@ -2,7 +2,7 @@
   <div class="addToVault">
     <div class="input-group">
       <select v-model="selected" class="custom-select">
-        <option disabled value>Select a Vault</option>
+        <option disabled selected value>Select a Vault</option>
         <VaultTarget
           v-for="vault in vaults"
           :key="vault.id"
@@ -11,7 +11,9 @@
         />
       </select>
       <div class="input-group-append">
-        <button @click="addToVault()">Add</button>
+        <button class="btn btn-success" @click="addToVault()">
+          <i class="fas fa-box-open"></i>
+        </button>
       </div>
     </div>
   </div>
@@ -51,4 +53,7 @@ export default {
 
 
 <style scoped>
+.input-group-append {
+  border-radius: 10px;
+}
 </style>

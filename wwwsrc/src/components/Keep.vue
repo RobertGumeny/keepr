@@ -1,16 +1,34 @@
 <template>
-  <div class="keep col-md-2 m-3" :style="{ 'background-image': 'url(' + keepData.img +')'}">
-    <div class="row justify-content-center">
-      <AddToVault class="addToVault" :keepData="keepData" />
+  <div class="keep col-md-2 m-3">
+    <div class="keep-img" :style="{ 'background-image': 'url(' + keepData.img +')'}">
+      <div class="row justify-content-center mx-0 px-0">
+        <AddToVault class="addToVault p-1" :keepData="keepData" />
+      </div>
+      <div class="row justify-content-center dataRow">
+        <span class="p-2">
+          <i class="fas fa-box-open text-success"></i>
+          {{keepData.keeps}}
+          <i class="fas fa-eye text-primary"></i>
+          {{keepData.views}}
+          <i class="fas fa-share-square text-warning"></i>
+          {{keepData.shares}}
+        </span>
+      </div>
     </div>
-    <!-- <img :src="keepData.img" /> -->
 
-    <!-- <p>{{keepData.name}}</p>
-    <p>{{keepData.description}}</p>
-    <p>Private: {{keepData.isPrivate}}</p>-->
-    <div class="row viewDetails justify-content-end">
-      <div class="col-md-6 ml-auto">
-        <button @click="setActive()" data-toggle="modal" data-target="#viewKeepModal">View Details</button>
+    <div class="row justify-content-center">
+      <div class="col-8 d-flex justify-content-between p-1">
+        <button
+          class="btn btn-sm btn-primary"
+          @click="setActive()"
+          data-toggle="modal"
+          data-target="#viewKeepModal"
+        >
+          <i class="fas fa-eye"></i>
+        </button>
+        <button class="btn btn-sm btn-warning">
+          <i class="fas fa-share-square"></i>
+        </button>
       </div>
     </div>
 
@@ -53,7 +71,8 @@ export default {
 
 
 <style scoped>
-.keep {
+.keep-img {
+  position: relative;
   border-radius: 10px;
   width: 12rem;
   height: 18rem;
@@ -61,8 +80,12 @@ export default {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+.addToVault {
+  border-radius: 10px;
+}
 .addToVault,
-.viewDetails {
+.dataRow {
   display: none;
   transition-property: opacity;
   transition-duration: 1s;
@@ -76,7 +99,14 @@ export default {
 .keep:hover .addToVault {
   display: block;
 }
-.keep:hover .viewDetails {
+.keep:hover .dataRow {
   display: block;
+}
+.dataRow {
+  background-color: #f1f1f1;
+  border-radius: 10px;
+  position: absolute;
+  left: 30%;
+  top: 90%;
 }
 </style>

@@ -1,10 +1,15 @@
 <template>
   <div class="vaultDetails container-fluid">
-    <div class="row flex-column align-items-center">
-      <p>{{vault.name}}</p>
-      <p>{{vault.description}}</p>
+    <div class="row justify-content-between mt-0 align-items-center">
+      <p class="align-self-start ml-1">{{vault.description}}</p>
+      <button
+        class="btn btn-sm btn-danger"
+        @click="deletePrompt()"
+        data-dismiss="modal"
+      >Delete Vault</button>
+    </div>
+    <div class="row">
       <VaultKeep v-for="vaultKeep in vaultKeeps" :key="vaultKeep.id" :vaultKeepData="vaultKeep"></VaultKeep>
-      <button @click="deletePrompt()" data-dismiss="modal">Delete Vault</button>
     </div>
   </div>
 </template>

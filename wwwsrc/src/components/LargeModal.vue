@@ -2,7 +2,7 @@
   <div class="largeModal modal">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
       <div class="modal-content">
-        <div class="modal-header">
+        <div class="modal-header bg-light">
           <h5 class="modal-title">{{title}}</h5>
           <button
             type="button"
@@ -17,8 +17,8 @@
         <div class="modal-body">
           <slot></slot>
         </div>
-        <div class="modal-footer">
-          <button type="button" data-dismiss="modal">Close</button>
+        <div class="modal-footer mt-3 bg-light">
+          <button class="btn btn-dark" type="button" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>

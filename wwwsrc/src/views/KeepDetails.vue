@@ -6,7 +6,7 @@
       </div>
       <p>{{keep.name}}</p>
       <p>{{keep.description}}</p>
-      <button @click="deletePrompt()" data-dismiss="modal">Delete Keep</button>
+      <button v-if="$auth.isAuthenticated" @click="deletePrompt()" data-dismiss="modal">Delete Keep</button>
     </div>
   </div>
 </template>
