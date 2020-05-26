@@ -1,13 +1,9 @@
 <template>
-  <div class="vaultKeep col-md-3 m-3 mt-5">
-    <div class="keep-img" :style="{ 'background-image': 'url(' + vaultKeepData.img +')'}">
-      <div class="row justify-content-center mx-0 px-0">
-        <button class="btn btn-sm btn-danger removeFromVault m-1 ml-auto" @click="deletePrompt()">
-          <i class="fas fa-trash-alt"></i>
-        </button>
-      </div>
-      <div class="row justify-content-center dataRow">
-        <span class="p-2">
+  <div class="col-md-3 my-2">
+    <div class="vaultKeep card text-center">
+      <img class="card-img" :src="vaultKeepData.img" alt />
+      <div class="card-img-overlay">
+        <span class="dataRow p-2">
           <i class="fas fa-box-open text-success"></i>
           {{vaultKeepData.keeps}}
           <i class="fas fa-eye text-primary"></i>
@@ -16,26 +12,20 @@
           {{vaultKeepData.shares}}
         </span>
       </div>
+      <div class="card-footer">
+        <button class="btn btn-sm btn-warning ml-1">
+          Share
+          <i class="fas fa-share-square"></i>
+        </button>
+        <button
+          v-if="vaultKeepData.isPrivate"
+          class="btn btn-sm btn-danger ml-1"
+          @click="deletePrompt()"
+        >
+          <i class="fas fa-trash-alt"></i>
+        </button>
+      </div>
     </div>
-    <div class="row justify-content-center pt-1 ml-3">
-      <button
-        class="btn btn-sm btn-primary mr-1"
-        @click="setActive()"
-        data-toggle="modal"
-        data-target="#viewKeepModal"
-      >
-        View
-        <i class="fas fa-eye"></i>
-      </button>
-      <button class="btn btn-sm btn-warning ml-1">
-        Share
-        <i class="fas fa-share-square"></i>
-      </button>
-    </div>
-
-    <SmallModal :title="vaultKeepData.name" id="viewKeepModal">
-      <KeepDetails />
-    </SmallModal>
   </div>
 </template>
 
@@ -84,46 +74,32 @@ export default {
 
 
 <style scoped>
-.vaultKeep {
-  width: 14rem;
-  height: 18rem;
-}
-.keep-img {
-  position: relative;
-  border-radius: 10px;
-  width: 12rem;
-  height: 18rem;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.removeFromVault {
+.addToVault {
   border-radius: 10px;
 }
-.removeFromVault,
+.addToVault,
 .dataRow {
   display: none;
   transition-property: opacity;
   transition-duration: 1s;
 }
-.vaultKeep .removeFromVault {
+.vaultKeep .addToVault {
   display: none;
   transition-property: opacity;
   transition-duration: 1s;
 }
 
-.vaultKeep:hover .removeFromVault {
+.vaultKeep:hover .addToVault {
   display: block;
 }
 .vaultKeep:hover .dataRow {
   display: block;
 }
+
 .dataRow {
+  margin: 0 auto;
+  width: 100%;
   background-color: #f1f1f1;
   border-radius: 10px;
-  position: absolute;
-  left: 30%;
-  top: 90%;
 }
 </style>

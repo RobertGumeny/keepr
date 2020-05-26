@@ -1,9 +1,20 @@
 <template>
   <div class="vault col-md-3 m-3">
-    <p>{{vaultData.name}}</p>
-    <p>{{vaultData.description}}</p>
-    <button @click="viewDetails()" data-toggle="modal" data-target="#viewVaultModal">View Details</button>
-    <button @click="deletePrompt()">Delete</button>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{vaultData.name}}</h5>
+        <h6 class="card-subtitle">{{vaultData.description}}</h6>
+        <div class="row mt-5 justify-content-center">
+          <button
+            class="btn btn-sm btn-primary"
+            @click="viewDetails()"
+            data-toggle="modal"
+            data-target="#viewVaultModal"
+          >View</button>
+          <button class="btn btn-sm btn-danger ml-1" @click="deletePrompt()">Delete</button>
+        </div>
+      </div>
+    </div>
     <LargeModal :title="vault.name" id="viewVaultModal">
       <VaultDetails />
     </LargeModal>

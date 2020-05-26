@@ -1,10 +1,20 @@
 <template>
-  <div class="dashboard container-fluid">
+  <div class="dashboard container">
     <div class="row">
-      <div class="col-12">
+      <div class="col-12 text-center text-primary">
         <h1>Welcome back {{ user.name }}</h1>
-        <button type="button" data-toggle="modal" data-target="#createKeepModal">Add a Keep</button>
-        <button type="button" data-toggle="modal" data-target="#createVaultModal">Create a Vault</button>
+        <button
+          class="btn btn-outline-success"
+          type="button"
+          data-toggle="modal"
+          data-target="#createKeepModal"
+        >Add a Keep</button>
+        <button
+          class="btn btn-outline-info"
+          type="button"
+          data-toggle="modal"
+          data-target="#createVaultModal"
+        >Create a Vault</button>
       </div>
       <LargeModal title="Create a Keep" id="createKeepModal">
         <CreateKeep />
@@ -12,7 +22,6 @@
       <LargeModal title="Create a Vault" id="createVaultModal">
         <CreateVault />
       </LargeModal>
-      <h2>User ID: {{user.sub}}</h2>
     </div>
     <div class="row">
       <div class="col-12">

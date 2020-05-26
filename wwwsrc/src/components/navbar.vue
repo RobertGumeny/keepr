@@ -1,8 +1,10 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg navbar-light">
     <div class="d-flex align-items-center">
-      <i class="fas fa-box-open fa-lg text-success"></i>
-      <router-link class="navbar-brand mb-1 ml-1 text-success" :to="{ name: 'home' }">Keepr</router-link>
+      <i class="fas fa-box-open fa-2x text-success"></i>
+      <router-link class="navbar-brand mb-1 ml-1 text-success" :to="{ name: 'home' }">
+        <span class="text-large">Keepr</span>
+      </router-link>
     </div>
     <button
       class="navbar-toggler"
@@ -60,4 +62,10 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.text-large {
+  font-family: "Roboto Slab", serif;
+  font-size: larger;
+  font-weight: bold;
+}
+</style>
