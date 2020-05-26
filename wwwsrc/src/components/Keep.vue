@@ -17,29 +17,28 @@
           </span>
         </div>
       </div>
-      <div class="card-footer">
-        <h5 class="card-subtitle pb-1">{{keepData.name}}</h5>
-        <h6 class="card-subtitle text-muted pb-1">{{keepData.description}}</h6>
-        <button
-          class="btn btn-sm btn-primary mr-1"
-          @click="setActive()"
-          data-toggle="modal"
-          data-target="#viewKeepModal"
-        >
-          <i class="fas fa-eye"></i>
-        </button>
-        <button class="btn btn-sm btn-warning ml-1">
-          <i class="fas fa-share-square"></i>
-        </button>
-        <button
-          v-if="keepData.isPrivate"
-          class="btn btn-sm btn-danger ml-1"
-          @click="deletePrompt()"
-        >
-          <i class="fas fa-trash-alt"></i>
-        </button>
-      </div>
     </div>
+    <div class="p-2 text-center">
+      <h5 class="card-subtitle pb-1">{{keepData.name}}</h5>
+      <h6 class="card-subtitle text-muted pb-1">{{keepData.description}}</h6>
+      <button
+        class="btn btn-sm btn-primary mr-1"
+        @click="setActive()"
+        data-toggle="modal"
+        data-target="#viewKeepModal"
+      >
+        <i class="fas fa-eye"></i>
+      </button>
+      <button class="btn btn-sm btn-warning ml-1">
+        <i class="fas fa-share-square"></i>
+      </button>
+      <button v-if="keepData.isPrivate" class="btn btn-sm btn-danger ml-1" @click="deletePrompt()">
+        <i class="fas fa-trash-alt"></i>
+      </button>
+    </div>
+    <SmallModal :title="keep.name" id="viewKeepModal">
+      <KeepDetails />
+    </SmallModal>
   </div>
 </template>
 
@@ -97,13 +96,9 @@ export default {
 .addToVault,
 .dataRow {
   display: none;
-  transition-property: opacity;
-  transition-duration: 1s;
 }
 .keep .addToVault {
   display: none;
-  transition-property: opacity;
-  transition-duration: 1s;
 }
 
 .keep:hover .addToVault {

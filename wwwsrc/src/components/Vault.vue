@@ -1,5 +1,5 @@
 <template>
-  <div class="vault col-md-3 m-3">
+  <div class="vault col-md-3 my-3">
     <div class="card">
       <div class="card-body">
         <h5 class="card-title">{{vaultData.name}}</h5>
