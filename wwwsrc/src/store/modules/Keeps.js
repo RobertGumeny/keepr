@@ -48,6 +48,16 @@ export const keeps = {
         alert(JSON.stringify(error.response))
       }
     },
+    //NOTE Update keep
+    async updateKeep({ commit, dispatch }, payload) {
+      try {
+        await api.put(`keeps/${payload.id}`, payload.keepToBeUpdated)
+        dispatch("getKeeps")
+        dispatch("getUserKeeps", payload.user)
+      } catch (error) {
+        alert(JSON.stringify(error.response))
+      }
+    },
     //NOTE Delete a keep (back-end will only allow it to be deleted if it is private)
     async deleteKeep({ dispatch }, payload) {
       try {

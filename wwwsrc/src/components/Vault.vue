@@ -4,7 +4,7 @@
     <p>{{vaultData.description}}</p>
     <button @click="viewDetails()" data-toggle="modal" data-target="#viewVaultModal">View Details</button>
     <button @click="deletePrompt()">Delete</button>
-    <LargeModal :title="vaultData.name" id="viewVaultModal">
+    <LargeModal :title="vault.name" id="viewVaultModal">
       <VaultDetails />
     </LargeModal>
   </div>
@@ -21,7 +21,11 @@ export default {
   data() {
     return {}
   },
-  computed: {},
+  computed: {
+    vault() {
+      return this.$store.state.vaults.activeVault;
+    }
+  },
   methods: {
     viewDetails() {
       this.$store.commit("setActiveVault", this.vaultData)

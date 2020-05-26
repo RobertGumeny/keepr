@@ -41,6 +41,26 @@ namespace Keepr.Services
     }
     //!SECTION
     //SECTION Put requests
+    internal Keep Edit(Keep keepToUpdate, string userId)
+    {
+      Keep foundKeep = GetById(keepToUpdate.Id);
+      if (foundKeep.UserId != userId)
+      {
+        if (_repo.UpdateKeepCounts(keepToUpdate))
+        {
+          foundKeep.Keeps = keepToUpdate.Keeps;
+          foundKeep.Views = keepToUpdate.Views;
+          foundKeep.Shares = keepToUpdate.Shares;
+          return foundKeep;
+        }
+        throw new Exception("Couldn't update this Keep");
+      }
+      if (_repo.Edit(keepToUpdate, userId))
+      {
+        return keepToUpdate;
+      }
+      throw new Exception("Could not edit this Keep.");
+    }
     //!SECTION
     //SECTION Post requests
     public Keep Create(Keep newKeep)

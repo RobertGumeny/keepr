@@ -55,6 +55,27 @@ namespace Keepr.Controllers
     }
     //!SECTION
     //SECTION Put requests
+    [Authorize]
+    [HttpPut("{id}")]
+    //TODO Finish Put request so we can update keeps, views, and shares
+    public ActionResult<Keep> Edit(int id, [FromBody] Keep keepToUpdate)
+    {
+      try
+      {
+        keepToUpdate.Id = id;
+        Claim user = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier);
+        if (user == null)
+        {
+          throw new Exception("Must be logged in!");
+        }
+        string userId = user.Value;
+        return Ok(_ks.Edit(keepToUpdate, userId));
+      }
+      catch (System.Exception err)
+      {
+        return BadRequest(err.Message);
+      }
+    }
     //!SECTION
     //SECTION Post requests
     [HttpPost]

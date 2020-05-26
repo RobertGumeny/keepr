@@ -42,8 +42,11 @@ export default {
       this.newVaultKeep.keepId = this.keepData.id;
       this.newVaultKeep.user = this.$auth.user;
       this.$store.dispatch("createVaultKeep", this.newVaultKeep)
+      this.keepData.keeps++;
+      this.$store.dispatch("updateKeep", { id: this.keepData.id, keepToBeUpdated: this.keepData, user: this.$auth.user });
       alert(`Added to vault!`)
-    }
+    },
+
   },
   components: {
     VaultTarget

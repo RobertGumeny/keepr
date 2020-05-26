@@ -1,5 +1,5 @@
 <template>
-  <div class="vaultKeep col-md-3 m-3">
+  <div class="vaultKeep col-md-3 m-3 mt-5">
     <div class="keep-img" :style="{ 'background-image': 'url(' + vaultKeepData.img +')'}">
       <div class="row justify-content-center mx-0 px-0">
         <button class="btn btn-sm btn-danger removeFromVault m-1 ml-auto" @click="deletePrompt()">
@@ -17,23 +17,23 @@
         </span>
       </div>
     </div>
-    <div class="row justify-content-center">
-      <div class="col-10 ml-4 d-flex justify-content-between p-1">
-        <button
-          class="btn btn-sm btn-primary"
-          @click="setActive()"
-          data-toggle="modal"
-          data-target="#viewKeepModal"
-        >
-          <i class="fas fa-eye"></i>
-        </button>
-        <button class="btn btn-sm btn-warning">
-          <i class="fas fa-share-square"></i>
-        </button>
-      </div>
+    <div class="row justify-content-center pt-1 ml-3">
+      <button
+        class="btn btn-sm btn-primary mr-1"
+        @click="setActive()"
+        data-toggle="modal"
+        data-target="#viewKeepModal"
+      >
+        View
+        <i class="fas fa-eye"></i>
+      </button>
+      <button class="btn btn-sm btn-warning ml-1">
+        Share
+        <i class="fas fa-share-square"></i>
+      </button>
     </div>
 
-    <SmallModal title="Keep Details" id="viewKeepModal">
+    <SmallModal :title="vaultKeepData.name" id="viewKeepModal">
       <KeepDetails />
     </SmallModal>
   </div>
@@ -67,6 +67,11 @@ export default {
         vaultKeepId: this.vaultKeepData.vaultKeepId,
         user: this.$auth.user,
         vaultId: this.vault.id      })
+    },
+    setActive() {
+      this.$store.commit("setActiveKeep", this.vaultKeepData)
+      this.vaultKeepData.views++;
+      this.$store.dispatch("updateKeep", { id: this.vaultKeepData.id, keepToBeUpdated: this.vaultKeepData, user: this.$auth.user });
     }
   },
   components: {

@@ -47,6 +47,35 @@ namespace Keepr.Repositories
     }
     //!SECTION
     //SECTION Put requests
+    internal bool Edit(Keep keepToUpdate, string userId)
+    {
+      keepToUpdate.UserId = userId;
+      string sql = @"
+      UPDATE keeps
+      SET
+      name = @Name,
+      description = @Description,
+      img = @Img,
+      keeps = @Keeps,
+      views = @Views,
+      shares = @Shares
+      WHERE id = @Id
+      AND userId = @UserId";
+      int affectedRows = _db.Execute(sql, keepToUpdate);
+      return affectedRows == 1;
+    }
+    internal bool UpdateKeepCounts(Keep keepToUpdate)
+    {
+      string sql = @"
+      UPDATE keeps
+      SET
+      keeps = @Keeps,
+      views = @Views,
+      shares = @Shares
+      WHERE id = @Id";
+      int affectedRows = _db.Execute(sql, keepToUpdate);
+      return affectedRows == 1;
+    }
     //!SECTION
     //SECTION Post requests
     internal Keep Create(Keep newKeep)

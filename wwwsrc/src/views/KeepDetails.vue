@@ -4,7 +4,6 @@
       <div>
         <img class="img-fluid" :src="keep.img" alt />
       </div>
-      <p>{{keep.name}}</p>
       <p>{{keep.description}}</p>
       <button v-if="$auth.isAuthenticated" @click="deletePrompt()" data-dismiss="modal">Delete Keep</button>
     </div>

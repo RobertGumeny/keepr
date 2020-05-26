@@ -1,6 +1,9 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <router-link class="navbar-brand" :to="{ name: 'home' }">Keepr</router-link>
+    <div class="d-flex align-items-center">
+      <i class="fas fa-box-open fa-lg text-success"></i>
+      <router-link class="navbar-brand mb-1 ml-1 text-success" :to="{ name: 'home' }">Keepr</router-link>
+    </div>
     <button
       class="navbar-toggler"
       type="button"
