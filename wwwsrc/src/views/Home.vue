@@ -1,7 +1,11 @@
 <template>
   <div class="home container-fluid">
-    <div class="row mx-1 my-2">
-      <Keep v-for="keep in keeps" :key="keep.id" :keepData="keep"></Keep>
+    <div class="row">
+      <div class="col-12">
+        <div class="card-columns mx-1">
+          <Keep v-for="keep in keeps" :key="keep.id" :keepData="keep"></Keep>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -29,3 +33,7 @@ export default {
   components: { Keep }
 };
 </script>
+<style scoped>
+.home {
+}
+</style>
