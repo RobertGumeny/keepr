@@ -77,6 +77,11 @@ export default {
 .addToVault {
   border-radius: 10px;
 }
+
+.card-footer {
+  position: relative;
+}
+
 .addToVault,
 .dataRow {
   display: none;

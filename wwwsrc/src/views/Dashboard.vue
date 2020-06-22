@@ -35,7 +35,11 @@
       </div>
     </div>
     <div class="row">
-      <Keep v-for="keep in userKeeps" :key="keep.id" :keepData="keep"></Keep>
+      <div class="col-12">
+        <div class="card-columns mx-1">
+          <Keep v-for="keep in userKeeps" :key="keep.id" :keepData="keep"></Keep>
+        </div>
+      </div>
     </div>
   </div>
 </template>
